@@ -78,6 +78,10 @@ In short, it tells you how to find the pixel data corresponding to that coordina
 size_line: how many bytes each line, so y will move down so many lines.
 bpp/8: to get how many bytes per pixel, eg. 1 pixel requires 3 bytes, then x moves to right x*3 bytes
 
+#Rescale to fit the window
+(new_max - new_min) / (old_max - old_new) * (value_to_calculate - old_min) + new_min
+//new range / old range = ratio
+//ratio * distance + new_min(starting value)
 
 #Color Depth / Bits Per Pixel
 - 1 bit: Black & White 2^1
