@@ -1,6 +1,6 @@
 # fractol
 Minilibx: https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
-
+https://github.com/suspectedoceano/fractol/tree/main
 Psychedelic color set: https://www.color-hex.com/color-palette/5784
 
 Video tutorial: https://www.youtube.com/@onaecO/videos
@@ -79,9 +79,11 @@ size_line: how many bytes each line, so y will move down so many lines.
 bpp/8: to get how many bytes per pixel, eg. 1 pixel requires 3 bytes, then x moves to right x*3 bytes
 
 #Rescale to fit the window
+````
 (new_max - new_min) / (old_max - old_new) * (value_to_calculate - old_min) + new_min
 //new range / old range = ratio
-//ratio * distance + new_min(starting value)
+//ratio * old distance + new_min(starting value)
+````
 
 #Color Depth / Bits Per Pixel
 - 1 bit: Black & White 2^1
