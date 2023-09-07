@@ -1,10 +1,40 @@
-# fractol
-Minilibx: https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+# Fract-ol
+Write a program to generate stunning Fractals.
+We will learn about manipulating a low-level graphic library: MinilibX, advanced math, and handling the events.
+
+Both the Mandelbrot and Julia sets are visual representations of complex mathematical formulas, and they produce stunningly intricate patterns and designs.
+
+**Mandelbrot Set:**
+- Think of it as a collection of complex numbers. 
+- For each point on the plane, you repeatedly apply a simple mathematical formula and watch how the result changes. 
+- If, after many iterations, the result remains close to the starting point, then that point is in the Mandelbrot set, and it's typically colored black on images. If it "escapes" or goes far away, it's not in the set, and its color is based on how quickly it escaped.
+- Visually, it's a mesmerizing mix of swirling shapes with infinitely repeating patterns.
+
+**Julia Set:**
+- Like the Mandelbrot set, it's about applying a mathematical formula repeatedly to each point on the plane. 
+- The main difference is that while the Mandelbrot set uses the same formula for every point, the Julia set uses a different, fixed complex number for its formula for each different Julia set.
+- The shape and detail of the resulting pattern vary based on that fixed number.
+- Each Julia set looks different, but all have intricate, often symmetrical patterns.
+
+# Minilibx - Simple Graphical Interface Library
+https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+
 https://github.com/suspectedoceano/fractol/tree/main
+
 Psychedelic color set: https://www.color-hex.com/color-palette/5784
 
 Video tutorial: https://www.youtube.com/@onaecO/videos
+
 https://medium.com/@jalal92/fractol-22a21a1ad5bd
+
+#Usage
+cc *.c -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o fractol
+L: path to the library 
+
+#Images, RGB, Pixels
+https://www.youtube.com/watch?v=15aqFQQVBWU
+
+
 
 ````
 mlx_init(); //Establish the connection with X window server && malloc display
