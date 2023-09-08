@@ -19,7 +19,7 @@ static void	init_data(t_fractal *fractal);
 
 int	main(int ac, char **av)
 {
-	t_fractal	fractal;
+	t_fractal	fractal;//a variable, not a pointer
 
 	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 10) == 0
 		|| ac == 4 && ft_strncmp(av[1], "julia", 5) == 0)
@@ -30,10 +30,10 @@ int	main(int ac, char **av)
 		// 	fractal.julia_x = atoi_double(av[2]);//todo
 		// 	fractal.julia_y = atoi_double(av[3]);//todo
 		// }
-		init_mlx(&fractal);
+		init_mlx(&fractal);//传递变量的地址，这样函数可以直接修改这个变量的内容
 		init_data(&fractal);
-		mlx_key_hook(fractal.window, &key_hook, &fractal);
-		mlx_mouse_hook(fractal.window, &mouse_hook, &fractal);
+		mlx_key_hook(fractal.window, key_hook, &fractal);
+		mlx_mouse_hook(fractal.window, mouse_hook, &fractal);
 		mlx_hook(fractal.window, 17, 0, exit_fractal, &fractal);
 		render(&fractal);
 		mlx_loop(fractal.mlx);
