@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:04:21 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 17:14:18 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/08 22:57:18 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // each pixel on your screen will execute the whole fractal's calculation(heavy)
 static void draw_pixel(int x, int y, t_fractal *fractal);
-static void put_pix(int x, int y, t_img *img, int color);
+static void put_pix(int x, int y, t_fractal *fractal, int color);
 
 void render(t_fractal *fractal)
 {
@@ -34,16 +34,22 @@ void render(t_fractal *fractal)
 }
 // the x, y location of where the image ought to be placed;
 
+double scale(double unscaled_num, double new_min, double new_max, double old_min, double old_max)
+{
+    return (new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min;
+}
+
 static void draw_pixel(int x, int y, t_fractal *fractal)
 {
 	t_complex z;
 	t_complex c;
 	int i;
 
-	// z.x = scale(x, -2, 2, 0, WIDTH) * fractal->zoom + fractal->shift_x;
-	// z.y = scale(y, 1.5, -1.5, 0, HEIGHT) * fractal->zoom + fractal->shift_y;
-	z.x = (x + fractal->shift_x) * RATIO * fractal->zoom ;
-	z.y = (y + fractal->shift_y) * RATIO * fractal->zoom ;
+
+	z.x = scale(x, -2, 2, 0, WIDTH) * fractal->zoom + fractal->shift_x;
+	z.y = scale(y, 1.5, -1.5, 0, HEIGHT) * fractal->zoom + fractal->shift_y;
+	// z.x = (x + fractal->shift_x) * RATIO * fractal->zoom ;
+	// z.y = (y + fractal->shift_y) * RATIO * fractal->zoom ;
 	// mandel or julia
 	if (ft_strncmp(fractal->name, "julia", 5) == 0)
 	{
@@ -62,13 +68,13 @@ static void draw_pixel(int x, int y, t_fractal *fractal)
 		z.y = 2 * z.x * z.y + c.y;// z = z*z (x*x - y*y + 2xy) + c
 		if ((z.x * z.x) + (z.y * z.y) > 4)
 		{
-			//color = scale(i, BLACK, WHITE, 0, fractal->max_iter);
-			put_pix(x, y, &fractal, fractal->color * (i % 10));//what if its too big?
+			fractal->color = scale(i, BLACK, WHITE, 0, fractal->max_iter);
+			put_pix(x, y, fractal, fractal->color);//what if its too big?
 			return ;
 		}
 		i++;
 	}
-	put_pix(x, y, &img, BLACK);
+	put_pix(x, y, fractal, BLACK);
 }
 
 static void put_pix(int x, int y, t_fractal *fractal, int color)
@@ -77,9 +83,8 @@ static void put_pix(int x, int y, t_fractal *fractal, int color)
 	char	*temp;
 
 	pos = y * fractal->size_len + x * (fractal->bpp / 8);
-	temp = fractal->pixel + pos
-	*(unsigned int *)temp = color;//把颜色值color放入temp指向的位置
-	//*(unsigned int *)(img->pixels_ptr + offset) = color;
+	temp = fractal->pixel + pos;
+	*(unsigned int *)temp = color;
 }
 /*
 1. 指针:相同的大小

@@ -3,20 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:43:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 17:20:04 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/08 22:28:37 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	handle_err(void)
+// void	handle_err(void)
+// {
+// 	perror("Malloc failed");
+// 	exit(EXIT_FAILURE);
+// }
+
+int	exit_fractal(t_fractal *fractal)
 {
-	perror("Malloc failed");
-	exit(EXIT_FAILURE);
+	mlx_destroy_image(fractal->mlx, fractal->image);
+	mlx_destroy_window(fractal->mlx, fractal->window);
+	mlx_destroy_display(fractal->mlx);
+	free(fractal->mlx);
+	exit(0);
+	return (1);
 }
+
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	if (n == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 17:30:22 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/08 22:28:46 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@
 #define ESCAPE 4 // 2*2
 //complex number = x(real) + y*i(imaginary)
 
-#define ESC
-#define UP
-#define DOWN
-#define LEFT
-#define RIGHT
-#define INCREASE
-#define DECREASE
+//https://github.com/ilkou/minilibx/blob/master/key_linux.h
+#define ESC 65307
+#define UP 65362
+#define DOWN 65364
+#define LEFT 65361
+#define RIGHT 65363
+#define INCREASE 105//i
+#define DECREASE 100//d
+#define CHANGE 99//c
 #define ZOOM_IN 4
 #define ZOOM_OUT 5
 
@@ -85,5 +87,10 @@ typedef struct	S_fractal
 void	handle_err(void);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
+void	render(t_fractal *fractal);
+int		exit_fractal(t_fractal *fractal);
+int		key_hook(int key_code, t_fractal *fractal);
+int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
+
 
 #endif
