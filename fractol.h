@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/07 17:22:39 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/08 17:30:22 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,30 @@
 //window
 #define WIDTH 800
 #define HEIGHT 600
+#define RATIO 800/4//-2~+2/ -1.5~1.5
 //color
 #define BLACK 0x000000
 #define WHITE 0xFFFFFF
+#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
+#define AQUA_DREAM      0x33CCCC  // A bright turquoise
+#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
 //RED FF0000
 //GRE 00FF00
 //BLU 0000FF
 
-#define ESCAPE 4
-#define MAX_ITERATION 42
+#define ESCAPE 4 // 2*2
 //complex number = x(real) + y*i(imaginary)
+
+#define ESC
+#define UP
+#define DOWN
+#define LEFT
+#define RIGHT
+#define INCREASE
+#define DECREASE
+#define ZOOM_IN 4
+#define ZOOM_OUT 5
+
 
 typedef struct	s_complex
 {
@@ -40,22 +54,27 @@ typedef struct	s_complex
 }				t_complex;
 
 //create a buffer
-typedef struct	s_img
-{
-	void	*img_ptr;//pointer to img struct
-	char	*pixel;//point to the actual pixels
-	int		bpp;//bits per pixel
-	int		size_len;
-	int		endian;//byteorder
-}				t_img;
+// typedef struct	s_img
+// {
+// 	void	*img_ptr;//pointer to img struct
+// 	char	*pixel;//point to the actual pixels
+// 	int		bpp;//bits per pixel
+// 	int		size_len;
+// 	int		endian;//byteorder
+// }				t_img;
 
 typedef struct	S_fractal
 {
 	char	*name;
 	void	*mlx;//void *mlx_init()
 	void	*window;//mlx_new_window
-	//t_img	img;//??
-	//int		max_iteration;//? or just define it?
+	void	*image; //mlx_new_image
+	char	*pixel;//mlx_get_data_addr
+	int		bpp;//bits per pixel
+	int		size_len;
+	int		endian;
+	int		max_iter;
+	int		color;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;

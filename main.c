@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:05:03 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/07 17:28:35 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/08 17:28:59 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,49 +34,51 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	fractal.name = av[1];
-	init_fractal(&fractal);
+	init_mlx(&fractal);
+	init_data(fractal);
+	mlx_key_hook();
+	mlx_mouse_hook();
 	render(&fractal);
 	mlx_loop(fractal.mlx);
 	return (0);
 }
 
 //mlx connections + window
-static void	init_fractal(t_fractal *fractal)
+static void	init_mlx(t_fractal *fractal)
 {
-	t_img	img;
-
-	// 1. connection
 	fractal->mlx = mlx_init();
-	if (fractal->mlx == NULL)
-		handle_err();
-	// 2. window
+	// if (fractal->mlx == NULL)
+	// 	handle_err();
 	fractal->window = mlx_new_window(fractal->mlx,
-									 WIDTH, HEIGHT, fractal->name);
-	if (fractal->window == NULL)
-	{
-		mlx_destroy_display(fractal->mlx);
-		free(fractal->mlx);
-		handle_err();
-	}
-	// 3. image
-	img.img_ptr = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
-	if (img.img_ptr == NULL)
-	{
-		mlx_destroy_display(fractal->mlx);
-		mlx_destroy_window(fractal->mlx, fractal->window);
-		free(fractal->mlx);
-		free(fractal->window);//no need??
-		handle_err();
-	}
+			WIDTH, HEIGHT, fractal->name);
+	// if (fractal->window == NULL)
+	// {
+	// 	mlx_destroy_display(fractal->mlx);
+	// 	free(fractal->mlx);
+	// 	handle_err();
+	// }
+	fractal->image = mlx_new_image(fractal->mlx, WIDTH, HEIGHT);
+	// if (img.img_ptr == NULL)
+	// {
+	// 	mlx_destroy_display(fractal->mlx);
+	// 	mlx_destroy_window(fractal->mlx, fractal->window);
+	// 	free(fractal->mlx);
+	// 	free(fractal->window);//no need??
+	// 	handle_err();
+	// }
 	//first pixel address
-	img.pixel = mlx_get_data_addr(img.img_ptr, img.bpp, img.size_len, img.endian);
+	fractal->pixel = mlx_get_data_addr(fractal->image,
+			&fractal->bpp,
+			&fractal->size_len,
+			&fractal->endian);
 
-	init_event(fractal);//?
-	init_data(fractal);//?
+	init_event(fractal);
 }
 
 static void	init_data(t_fractal *fractal)
 {
+	fractal->max_iter = 42;
+	fractal->color = 0xFCBE11;
 	fractal->shift_x = 0.0;
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
