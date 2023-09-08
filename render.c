@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:04:21 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 22:57:18 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/08 23:54:22 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void render(t_fractal *fractal)
 	int y;
 
 	y = -1;
-	while (++y < HEIGHT)
+	while (++y < SIZE)
 	{
 		x = -1;
-		while (++x < WIDTH)
+		while (++x < SIZE)
 			draw_pixel(x, y, fractal);// draw each pixel
 	}
 	mlx_put_image_to_window(fractal->mlx,
@@ -45,11 +45,10 @@ static void draw_pixel(int x, int y, t_fractal *fractal)
 	t_complex c;
 	int i;
 
-
-	z.x = scale(x, -2, 2, 0, WIDTH) * fractal->zoom + fractal->shift_x;
-	z.y = scale(y, 1.5, -1.5, 0, HEIGHT) * fractal->zoom + fractal->shift_y;
-	// z.x = (x + fractal->shift_x) * RATIO * fractal->zoom ;
-	// z.y = (y + fractal->shift_y) * RATIO * fractal->zoom ;
+	z.x = scale(x, -2, 2, 0, SIZE) * fractal->zoom + fractal->shift_x;
+	z.y = scale(y, 2, -2, 0, SIZE) * fractal->zoom + fractal->shift_y;
+	// z.x = x / RATIO * fractal->zoom + fractal->shift_x;
+	// z.y = y / RATIO * fractal->zoom + fractal->shift_Y;
 	// mandel or julia
 	if (ft_strncmp(fractal->name, "julia", 5) == 0)
 	{

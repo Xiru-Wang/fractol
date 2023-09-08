@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 22:28:46 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/08 23:48:02 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 #include <unistd.h>
 #include <stdlib.h>//malloc
 
-//window
-#define WIDTH 800
-#define HEIGHT 600
-#define RATIO 800/4//-2~+2/ -1.5~1.5
+#define SIZE 800
+//#define WIDTH 800
+//#define HEIGHT 600
+#define RATIO 800/4//-2~+2
 //color
 #define BLACK 0x000000
 #define WHITE 0xFFFFFF
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+#define ELECTRIC_BLUE 0x0066FF  // A radiant blue
+#define AQUA_DREAM 0x33CCCC  // A bright turquoise
+#define MAGENTA_BURST 0xFF00FF  // A vibrant magenta
 //RED FF0000
 //GRE 00FF00
 //BLU 0000FF
