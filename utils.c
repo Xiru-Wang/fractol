@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:43:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 22:28:37 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/09 12:24:39 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void put_color_to_pix(int x, int y, t_fractal *fractal, int color)
+{
+	int		pos;
+	char	*temp;
+
+	pos = y * fractal->size_len + x * (fractal->bpp / 8);
+	temp = fractal->pixel + pos;
+	*(unsigned int *)temp = color;
+}
 // void	handle_err(void)
 // {
 // 	perror("Malloc failed");

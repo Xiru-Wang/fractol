@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
+/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/08 22:28:46 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/09 12:26:12 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 #include <unistd.h>
 #include <stdlib.h>//malloc
 
-//window
-#define WIDTH 800
-#define HEIGHT 600
-#define RATIO 800/4//-2~+2/ -1.5~1.5
+#define SIZE 800
+//#define WIDTH 800
+//#define HEIGHT 600
+#define RATIO 800/4//-2~+2
 //color
 #define BLACK 0x000000
 #define WHITE 0xFFFFFF
-#define ELECTRIC_BLUE   0x0066FF  // A radiant blue
-#define AQUA_DREAM      0x33CCCC  // A bright turquoise
-#define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
+#define ELECTRIC_BLUE 0x0066FF  // A radiant blue
+#define AQUA_DREAM 0x33CCCC  // A bright turquoise
+#define MAGENTA_BURST 0xFF00FF  // A vibrant magenta
 //RED FF0000
 //GRE 00FF00
 //BLU 0000FF
@@ -68,27 +68,30 @@ typedef struct	s_complex
 typedef struct	S_fractal
 {
 	char	*name;
-	void	*mlx;//void *mlx_init()
-	void	*window;//mlx_new_window
-	void	*image; //mlx_new_image
+	void	*mlx;
+	void	*window;
+	void	*image;
 	char	*pixel;//mlx_get_data_addr
-	int		bpp;//bits per pixel
+	int		bpp;
 	int		size_len;
 	int		endian;
 	int		max_iter;
 	int		color;
-	double	shift_x;
-	double	shift_y;
+	double	offset_x;
+	double	offset_y;
 	double	zoom;
-	double	julia_x;
-	double	julia_y;
+	double	julia_cx;
+	double	julia_cy;
 }				t_fractal;
 
-void	handle_err(void);
+void	put_color_to_pix(int x, int y, t_fractal *fractal, int color);
+int		exit_fractal(t_fractal *fractal);
+//void	handle_err(void);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putstr_fd(char *s, int fd);
-void	render(t_fractal *fractal);
-int		exit_fractal(t_fractal *fractal);
+//void	render(t_fractal *fractal);
+void	draw_mandel(t_fractal *fractal);
+void	draw_julia(t_fractal *fractal);
 int		key_hook(int key_code, t_fractal *fractal);
 int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 
