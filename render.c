@@ -6,11 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 20:04:21 by xiwang            #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2023/09/09 12:25:35 by xiruwang         ###   ########.fr       */
-=======
-/*   Updated: 2023/09/08 23:54:22 by xiruwang         ###   ########.fr       */
->>>>>>> c3d8073f51bd1360e383a0cce5f386270bf6bf93
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +19,6 @@
 // 	int x;
 // 	int y;
 
-<<<<<<< HEAD
 // 	y = -1;
 // 	while (++y < SIZE)
 // 	{
@@ -35,19 +30,6 @@
 // 			fractal->window,
 // 			fractal->image, 0, 0);//img is ready to push to the window
 // }
-=======
-	y = -1;
-	while (++y < SIZE)
-	{
-		x = -1;
-		while (++x < SIZE)
-			draw_pixel(x, y, fractal);// draw each pixel
-	}
-	mlx_put_image_to_window(fractal->mlx,
-			fractal->window,
-			fractal->image, 0, 0);//img is ready to push to the window
-}
->>>>>>> c3d8073f51bd1360e383a0cce5f386270bf6bf93
 // the x, y location of where the image ought to be placed;
 
 // double scale(double unscaled_num, double new_min, double new_max, double old_min, double old_max)
@@ -61,7 +43,6 @@
 // 	t_complex c;
 // 	int i;
 
-<<<<<<< HEAD
 // 	z.x = scale(x, -2, 2, 0, SIZE) * fractal->zoom + fractal->shift_x;
 // 	z.y = scale(y, 2, -2, 0, SIZE) * fractal->zoom + fractal->shift_y;
 // 	// z.x = x / RATIO * fractal->zoom + fractal->offset_x;//-2左移
@@ -97,38 +78,6 @@
 // {
 // 	int		pos;
 // 	char	*temp;
-=======
-	z.x = scale(x, -2, 2, 0, SIZE) * fractal->zoom + fractal->shift_x;
-	z.y = scale(y, 2, -2, 0, SIZE) * fractal->zoom + fractal->shift_y;
-	// z.x = x / RATIO * fractal->zoom + fractal->shift_x;
-	// z.y = y / RATIO * fractal->zoom + fractal->shift_Y;
-	// mandel or julia
-	if (ft_strncmp(fractal->name, "julia", 5) == 0)
-	{
-		c.x = fractal->julia_x; // in julia: c is constant
-		c.y = fractal->julia_y; // sepreate??
-	}
-	else
-	{
-		c.x = z.x;
-		c.y = z.y; // in mandel: z = 0
-	}
-	i = 0;
-	while (i < fractal->max_iter)
-	{
-		z.x = z.x * z.x - z.y * z.y + c.x;
-		z.y = 2 * z.x * z.y + c.y;// z = z*z (x*x - y*y + 2xy) + c
-		if ((z.x * z.x) + (z.y * z.y) > 4)
-		{
-			fractal->color = scale(i, BLACK, WHITE, 0, fractal->max_iter);
-			put_pix(x, y, fractal, fractal->color);//what if its too big?
-			return ;
-		}
-		i++;
-	}
-	put_pix(x, y, fractal, BLACK);
-}
->>>>>>> c3d8073f51bd1360e383a0cce5f386270bf6bf93
 
 // 	pos = y * fractal->size_len + x * (fractal->bpp / 8);
 // 	temp = fractal->pixel + pos;

@@ -6,7 +6,7 @@
 /*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:05:03 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/09 12:38:09 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/09 12:34:41 by xiruwang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,9 @@ static void	init_data(t_fractal *fractal);
 
 int	main(int ac, char **av)
 {
-	t_fractal	fractal;//a variable, not a pointer
+	t_fractal	fractal;
 
-	if (ac == 2 && ft_strncmp(av[1], "mandelbrot", 10) == 0
-		|| ac == 4 && ft_strncmp(av[1], "julia", 5) == 0)
-	{
-		fractal.name = av[1];
-		// if (ft_strncmp(av[1], "julia", 5) == 0)
-		// {
-		// 	fractal.julia_x = atoi_double(av[2]);//todo
-		// 	fractal.julia_y = atoi_double(av[3]);//todo
-		// }
-		init_mlx(&fractal);
-		init_data(&fractal);
-		mlx_key_hook(fractal.window, &key_hook, &fractal);
-		mlx_mouse_hook(fractal.window, &mouse_hook, &fractal);
-		mlx_hook(fractal.window, 17, 0, exit_fractal, &fractal);
-		render(&fractal);
-		mlx_loop(fractal.mlx);
-	}
-	else
+	if (ac != 2 && ac != 4)
 	{
 		write(STDERR_FILENO, "Please Enter: \"./fractol mandelbrot\"\n", 38);
 		write(STDERR_FILENO, "or \"./fractol julia value_1 value_2\"\n",37);
