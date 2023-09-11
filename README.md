@@ -5,31 +5,32 @@ We will learn about manipulating a low-level graphic library: MinilibX, advanced
 Both the Mandelbrot and Julia sets are visual representations of complex mathematical formulas, and they produce stunningly intricate patterns and designs.
 
 **Mandelbrot Set:**
-- Think of it as a collection of complex numbers. 
-- For each point on the plane, you repeatedly apply a simple mathematical formula and watch how the result changes. 
-- If, after many iterations, the result remains close to the starting point, then that point is in the Mandelbrot set, and it's typically colored black on images. If it "escapes" or goes far away, it's not in the set, and its color is based on how quickly it escaped.
-- Visually, it's a mesmerizing mix of swirling shapes with infinitely repeating patterns.
+- Z= Z*Z + C, Z(0) = 0, C = each point on the plane
+- applying a mathematical formula repeatedly to each point(C) on the plane. 
+- After i iteration, if Z escaped or stayed bounded
+- Black: bounded complex numbers.
+- Colored: escaped complex numbers.
+- Color depths: iterations or escape speed
+- if z.x * z.x + z.y * z.y > 4, escaped
 
 **Julia Set:**
-- Like the Mandelbrot set, it's about applying a mathematical formula repeatedly to each point on the plane. 
-- The main difference is that while the Mandelbrot set uses the same formula for every point, the Julia set uses a different, fixed complex number for its formula for each different Julia set.
-- The shape and detail of the resulting pattern vary based on that fixed number.
-- Each Julia set looks different, but all have intricate, often symmetrical patterns.
+- Z= Z*Z + C, C = a fixed complex number, Z = each point on the plane(THE MAIN DIFFERENCE)
+- applying a mathematical formula repeatedly to each point(Z) on the plane.
+- After i iteration, if Z escaped or stayed bounded
+- The shape and detail of the Julia set looks different, based on that fixed number(C).
 
-# Minilibx - Simple Graphical Interface Library
-https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
 
-https://github.com/suspectedoceano/fractol/tree/main
-
-Psychedelic color set: https://www.color-hex.com/color-palette/5784
-
-Video tutorial: https://www.youtube.com/@onaecO/videos
-
-https://medium.com/@jalal92/fractol-22a21a1ad5bd
+# Minilibx - Simple Graphical Interface Library built upon x library speak to X-server
+- allow us to draw things on the screen
+- X-server: an invisible middleman between your program and the device(keyboard, mouse, and screen)
+- man mlx(terminal)
 
 #Usage
 cc *.c -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o fractol
-L: path to the library 
+
+-L: path to the library 
+
+-l: link
 
 #Images, RGB, Pixels
 https://www.youtube.com/watch?v=15aqFQQVBWU
@@ -37,12 +38,29 @@ https://www.youtube.com/watch?v=15aqFQQVBWU
 
 
 ````
-mlx_init(); //Establish the connection with X window server && malloc display
+//STEP 1: Establish the connection with X window server
+void *mlx = mlx_init(); // function includes malloc
+//if failed mlx_destroy_display(mlx);// free the resources
 
-mlx_loop(connection);//keeps the function alive
-mlx_destroy_window();
-mlx_destroy_display();//free, exit in a clean way, close the connection to the X server
+//STEP 2: Create a window
+void *window = mlx_destroy_window(mlx, WIDTH, HEIGHT, "name of the window");
+
+//STEP 3: Events...
+mlx_mouse_hook(window, function, data);
+mlx_key_hook(window, function, data);
+mlx_hook(window, 17, 0, exit_function, data);//17: exit, close window
+
+//STEP 4: keeps the function alive
+mlx_loop(mlx);
+//Without this loop, the process will stop immediately
+//Keeps the program/application running
+//As long as the program is running, this loop continues to execute
+
+//LAST SETP:clean up
+mlx_destroy_window(mlx, window);
+mlx_destroy_display(mlx);
 free(connection);
+//exit in a clean way, close the connection to the X server
 
 ````
 
@@ -53,7 +71,7 @@ Get the memory address to write pixels
 typedef struct s_img
 {
  void *img_ptr;
- char *img_pixels;
+ char *img_pixels;//pointer to the first byte of the image
  int  bpp;
  int  size_line;
  int  endian;
