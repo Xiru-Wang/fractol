@@ -51,3 +51,19 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 	call_fractal(fractal, fractal->name);
 	return (0);
 }
+
+/*
+ * TRACK the mouse
+*/ The zoom follows the actual mouse position.
+
+#define MOUSEMOVE 6
+
+mlx_hook(window, 6, PointerMotionMask, mouse_track, fractal);
+
+int	mouse_track(int x, int y, t_fractal *fractal)
+{
+	fractal->x = x/200.0 * fractal->zoom) + fractal->shift_x;
+	fractal->y = y/200.0 * fractal->zoom) + fractal->shift_y;
+	call_fractal(fractal);
+	
+}
