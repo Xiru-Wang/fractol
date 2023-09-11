@@ -54,7 +54,8 @@ int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 
 /*
  * TRACK the mouse
-*/ The zoom follows the actual mouse position.
+*/ 
+//The zoom follows the actual mouse position. 必须要把int x, y放进struct
 
 #define MOUSEMOVE 6
 
@@ -64,6 +65,18 @@ int	mouse_track(int x, int y, t_fractal *fractal)
 {
 	fractal->x = x/200.0 * fractal->zoom) + fractal->shift_x;
 	fractal->y = y/200.0 * fractal->zoom) + fractal->shift_y;
-	call_fractal(fractal);
-	
+	//call_fractal(fractal);	
+}
+
+// Julia evolves when moving the mouse around
+mlx_hook(window, 6, PointerMotionMask, julia_track, fractal);
+int	julia_track(int x, int y, t_fractal *fractal)
+{
+	if (!ft_strncmp(fractal->name, "julia", 5))
+	{
+		fractal->julia_x = x/RATIO * fractal->zoom) + fractal->shift_x;
+		fractal->julia_y = y/RATIO * fractal->zoom) + fractal->shift_y;
+		fractal_render(fractal);
+	}
+	return 0;
 }
