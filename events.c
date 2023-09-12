@@ -57,24 +57,23 @@ int	julia_track(int x, int y, t_fractal *fractal)
 //The zoom follows the actual mouse position
 int	mouse_hook(int keycode, int x, int y, t_fractal *fractal)
 {
-	// Calculate the offset of the mouse from the center of the view
-	double offsetx = (x / RATIO - 2.0);//? z.x?
-	double offsety = (y / RATIO - 2.0);
-
+	double x_before；
+	double y_before；
+	double x_after；
+	double y_after；
+	
+	x_before = x / RATIO * fractal->zoom + fractal->offset_x;
+	y_before = y / RATIO * fractal->zoom + fractal->offset_y;	
 	if (keycode == ZOOM_IN)
-	{
 		fractal->zoom *= 0.98;
-
-		// Adjust the view offset based on the mouse position
-		fractal->offset_x += offsetx * (1.0 - fractal->zoom);
-		fractal->offset_y += offsety * (1.0 - fractal->zoom);
-	}
 	else if (keycode == ZOOM_OUT)
-	{
 		fractal->zoom *= 1.02;
-		fractal->offset_x -= offsetx * (fractal->zoom - 1.0);
-		fractal->offset_y -= offsety * (fractal->zoom - 1.0);
-	}
+	else
+		return (1);
+	x_after = x / RATIO * fractal->zoom + fractal->offset_x;
+	y_after = y / RATIO * fractal->zoom + fractal->offset_y;
+	fractal->offset_x += x_before - x_after;
+	fractal->offset_y += y_before - y_after;
 	call_fractal(fractal, fractal->name);
 	return (0);
 }
