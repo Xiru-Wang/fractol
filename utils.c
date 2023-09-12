@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:43:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/09 12:24:39 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/12 11:50:42 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,6 @@ void put_color_to_pix(int x, int y, t_fractal *fractal, int color)
 	temp = fractal->pixel + pos;
 	*(unsigned int *)temp = color;
 }
-// void	handle_err(void)
-// {
-// 	perror("Malloc failed");
-// 	exit(EXIT_FAILURE);
-// }
 
 int	exit_fractal(t_fractal *fractal)
 {
@@ -36,6 +31,15 @@ int	exit_fractal(t_fractal *fractal)
 	exit(0);
 	return (1);
 }
+
+void	call_fractal(t_fractal *fractal, char *name)
+{
+	if (ft_strncmp(name, "mandel", 7) == 0)
+		draw_mandel(fractal);
+	else if (ft_strncmp(name, "julia", 6) == 0)
+		draw_julia(fractal);
+}
+
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -49,16 +53,41 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return ((unsigned char)*s1 - (unsigned char)*s2);
 }
 
-void	ft_putstr_fd(char *s, int fd)
+double	atoi_db(char *s)
 {
-	unsigned int	i;
+	double	int_part;
+	double	double_part;
+	int		sign;
 
-	i = 0;
-	while (s[i])
+	int_part = 0;
+	double_part = 0;
+	sign = 1;
+	while (*s == 32 || (*s >= 9 && *s <= 13))
+		s++;
+	if (*s == '+' || *s == '-')
 	{
-		write(fd, &s[i], 1);
-		i++;
+		if (*s == '-')
+			sign = -1;
+		s++;
 	}
+	while (*s != '.' && *s)
+		int_part = (int_part * 10) + (*s++ - '0');
+	if (*s == '.')
+		s++;
+	while (*s)
+		double_part = double_part + (*s++ - '0') * 0.1;
+	return (sign * (int_part + double_part));
 }
+// void	ft_putstr_fd(char *s, int fd)
+// {
+// 	unsigned int	i;
+
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		write(fd, &s[i], 1);
+// 		i++;
+// 	}
+// }
 
 

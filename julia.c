@@ -7,11 +7,11 @@ void draw_julia(t_fractal *fractal)
 	int x;
 	int y;
 
-	y = 0;
-	while (y++ < SIZE)
+	y = -1;
+	while (++y < SIZE)
 	{
-		x = 0;
-		while (x++ < SIZE)
+		x = -1;
+		while (++x < SIZE)
 			calculate_julia(x, y, fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx,
@@ -35,7 +35,7 @@ void	calculate_julia(int x, int y, t_fractal *fractal)
 		z.x = temp_x;
 		if (z.x * z.x + z.y * z.y > ESCAPE)
 		{
-			put_color_to_pix(x, y, fractal, fractal->color * (i % 10));//i % 256?
+			put_color_to_pix(x, y, fractal, fractal->color * (i % 255));//i % 256?
 			return ;
 		}
 	}

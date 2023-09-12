@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xiruwang <xiruwang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/09 12:26:12 by xiruwang         ###   ########.fr       */
+/*   Updated: 2023/09/12 11:44:37 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define SIZE 800
 //#define WIDTH 800
 //#define HEIGHT 600
-#define RATIO 800/4//-2~+2
+#define RATIO 200.0//800/4
 //color
 #define BLACK 0x000000
 #define WHITE 0xFFFFFF
@@ -47,6 +47,7 @@
 #define CHANGE 99//c
 #define ZOOM_IN 4
 #define ZOOM_OUT 5
+#define MOUSEMOVE 6
 
 
 typedef struct	s_complex
@@ -55,15 +56,6 @@ typedef struct	s_complex
 	double	y;
 }				t_complex;
 
-//create a buffer
-// typedef struct	s_img
-// {
-// 	void	*img_ptr;//pointer to img struct
-// 	char	*pixel;//point to the actual pixels
-// 	int		bpp;//bits per pixel
-// 	int		size_len;
-// 	int		endian;//byteorder
-// }				t_img;
 
 typedef struct	S_fractal
 {
@@ -86,12 +78,13 @@ typedef struct	S_fractal
 
 void	put_color_to_pix(int x, int y, t_fractal *fractal, int color);
 int		exit_fractal(t_fractal *fractal);
-//void	handle_err(void);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	ft_putstr_fd(char *s, int fd);
-//void	render(t_fractal *fractal);
+//void	ft_putstr_fd(char *s, int fd);
+double	atoi_db(char *s);
+void	call_fractal(t_fractal *fractal, char *name);
 void	draw_mandel(t_fractal *fractal);
 void	draw_julia(t_fractal *fractal);
+int		julia_track(int x, int y, t_fractal *fractal);
 int		key_hook(int key_code, t_fractal *fractal);
 int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
 
