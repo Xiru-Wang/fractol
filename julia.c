@@ -1,5 +1,6 @@
 #include "fractol.h"
 
+// C = each pixel position (constant)
 void	calculate_julia(int x, int y, t_fractal *fractal);
 
 void draw_julia(t_fractal *fractal)
@@ -25,17 +26,17 @@ void	calculate_julia(int x, int y, t_fractal *fractal)
 	double temp_x;
 	int i;
 
-	z.x = x / RATIO * fractal->zoom + fractal->offset_x;//-2
-	z.y = y / RATIO * fractal->zoom + fractal->offset_y;//-2?
+	z.x = x / RATIO * fractal->zoom + fractal->offset_x;
+	z.y = y / RATIO * fractal->zoom + fractal->offset_y;
 	i = 0;
 	while (i++ < fractal->max_iter)
 	{
-		temp_x = z.x * z.x - z.y * z.y + fractal->julia_cx;//C const
+		temp_x = z.x * z.x - z.y * z.y + fractal->julia_cx;
 		z.y = 2 * z.x * z.y + fractal->julia_cy;
 		z.x = temp_x;
 		if (z.x * z.x + z.y * z.y > ESCAPE)
 		{
-			put_color_to_pix(x, y, fractal, fractal->color * (i % 255));//i % 256?
+			put_color_to_pix(x, y, fractal, fractal->color * (i % 256));
 			return ;
 		}
 	}

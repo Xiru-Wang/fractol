@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/12 11:44:37 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/12 20:14:50 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,13 @@
 # define FRACTOL_H
 
 #include "minilibx-linux/mlx.h"
-#include <mlx.h>//?
-#include <math.h>
+//#include <mlx.h>//?
+//#include <math.h>
 #include <unistd.h>
-#include <stdlib.h>//malloc
+#include <stdlib.h>
 
-#define SIZE 800
-//#define WIDTH 800
-//#define HEIGHT 600
-#define RATIO 200.0//800/4
+#define SIZE 1000
+#define RATIO 250.0//800/4
 //color
 #define BLACK 0x000000
 #define WHITE 0xFFFFFF
@@ -33,8 +31,7 @@
 //GRE 00FF00
 //BLU 0000FF
 
-#define ESCAPE 4 // 2*2
-//complex number = x(real) + y*i(imaginary)
+#define ESCAPE 4
 
 //https://github.com/ilkou/minilibx/blob/master/key_linux.h
 #define ESC 65307
@@ -42,12 +39,14 @@
 #define DOWN 65364
 #define LEFT 65361
 #define RIGHT 65363
-#define INCREASE 105//i
-#define DECREASE 100//d
-#define CHANGE 99//c
+#define INCREASE 105 //i
+#define DECREASE 100 //d
+#define CHANGE 99 //c:change color
 #define ZOOM_IN 4
 #define ZOOM_OUT 5
 #define MOUSEMOVE 6
+#define PSYCHEDELIC 112
+#define BACK 98 //b: back to previous color
 
 
 typedef struct	s_complex
@@ -63,7 +62,7 @@ typedef struct	S_fractal
 	void	*mlx;
 	void	*window;
 	void	*image;
-	char	*pixel;//mlx_get_data_addr
+	char	*pixel;
 	int		bpp;
 	int		size_len;
 	int		endian;
@@ -79,7 +78,6 @@ typedef struct	S_fractal
 void	put_color_to_pix(int x, int y, t_fractal *fractal, int color);
 int		exit_fractal(t_fractal *fractal);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-//void	ft_putstr_fd(char *s, int fd);
 double	atoi_db(char *s);
 void	call_fractal(t_fractal *fractal, char *name);
 void	draw_mandel(t_fractal *fractal);
@@ -87,6 +85,5 @@ void	draw_julia(t_fractal *fractal);
 int		julia_track(int x, int y, t_fractal *fractal);
 int		key_hook(int key_code, t_fractal *fractal);
 int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);
-
 
 #endif

@@ -38,7 +38,7 @@ static void	calculate_mandel(int x, int y, t_fractal *fractal)
 		z.x = temp_x;
 		if (z.x * z.x + z.y * z.y > ESCAPE)
 		{
-			put_color_to_pix(x, y, fractal, fractal->color * (i % 255));//i % 256?
+			put_color_to_pix(x, y, fractal, fractal->color * (i % 256));//i % 256?
 			return ;
 		}
 	}

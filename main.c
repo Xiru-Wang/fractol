@@ -6,15 +6,15 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:05:03 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/12 11:42:42 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/12 20:16:28 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
 //cc *.c -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o fractol
-void	call_fractal(t_fractal *fractal, char *name);
-static void init_mlx(t_fractal *fractal, char **av);
+void		call_fractal(t_fractal *fractal, char *name);
+static void	init_mlx(t_fractal *fractal, char **av);
 static void	init_data(t_fractal *fractal, char **av);
 
 int	main(int ac, char **av)
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 		mlx_key_hook(fractal.window, key_hook, &fractal);
 		mlx_mouse_hook(fractal.window, mouse_hook, &fractal);
 		mlx_hook(fractal.window, 6, 1L<<6, julia_track, &fractal);//PointerMotionMask
-		mlx_hook(fractal.window, 17, 0L, exit_fractal, &fractal);//NoEventMask
+		mlx_hook(fractal.window, 17, 0, exit_fractal, &fractal);//NoEventMask
 		call_fractal(&fractal, fractal.name);
 		mlx_loop(fractal.mlx);
 	}
@@ -54,9 +54,6 @@ static void	init_mlx(t_fractal *fractal, char **av)
 			&fractal->size_len,
 			&fractal->endian);
 	init_data(fractal, av);
-	// mlx_key_hook(fractal->window, key_hook, fractal);
-	// mlx_mouse_hook(fractal->window, mouse_hook, fractal);
-	// mlx_hook(fractal->window, 17, 0L, exit_fractal, fractal);//NoEventMask
 }
 
 // mlx events:https://harm-smits.github.io/42docs/libs/minilibx/events.html
@@ -64,7 +61,7 @@ static void	init_mlx(t_fractal *fractal, char **av)
 static void	init_data(t_fractal *fractal, char **av)
 {
 	fractal->max_iter = 42;
-	fractal->color = AQUA_DREAM;//0xFCBE11
+	fractal->color = 0xFCBE11;
 	fractal->offset_x = -2;//move the coordinate
 	fractal->offset_y = -2;//-1.35
 	fractal->zoom = 1.0;
