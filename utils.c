@@ -6,13 +6,13 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:43:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/12 11:50:42 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/13 20:12:41 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void put_color_to_pix(int x, int y, t_fractal *fractal, int color)
+void	put_color_to_pix(int x, int y, t_fractal *fractal, int color)
 {
 	int		pos;
 	char	*temp;
@@ -38,8 +38,9 @@ void	call_fractal(t_fractal *fractal, char *name)
 		draw_mandel(fractal);
 	else if (ft_strncmp(name, "julia", 6) == 0)
 		draw_julia(fractal);
+	else if (ft_strncmp(name, "newton", 7) == 0)
+		draw_newton(fractal);
 }
-
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -58,12 +59,12 @@ double	atoi_db(char *s)
 	double	int_part;
 	double	double_part;
 	int		sign;
+	double	div;
 
 	int_part = 0;
 	double_part = 0;
 	sign = 1;
-	while (*s == 32 || (*s >= 9 && *s <= 13))
-		s++;
+	div = 1.0;
 	if (*s == '+' || *s == '-')
 	{
 		if (*s == '-')
@@ -71,13 +72,17 @@ double	atoi_db(char *s)
 		s++;
 	}
 	while (*s != '.' && *s)
-		int_part = (int_part * 10) + (*s++ - '0');
+		int_part = (int_part * 10.0) + (*s++ - '0');
 	if (*s == '.')
 		s++;
 	while (*s)
-		double_part = double_part + (*s++ - '0') * 0.1;
+	{
+		div /= 10;
+		double_part = double_part + (*s++ - '0') * div;
+	}
 	return (sign * (int_part + double_part));
 }
+
 // void	ft_putstr_fd(char *s, int fd)
 // {
 // 	unsigned int	i;
@@ -89,5 +94,3 @@ double	atoi_db(char *s)
 // 		i++;
 // 	}
 // }
-
-
