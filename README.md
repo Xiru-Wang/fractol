@@ -57,19 +57,27 @@ z.x = x / scale_ratio + fractal->offset_x;
 z.y = -y / scale_ratio + fractal->offset_y;
 
 ````
-![11](https://github.com/Xiru-Wang/fractol/assets/79924696/276d83fd-98ad-4272-878f-deea51f1ebd8)
+# How image displayed on the screen
+
+You might wonder why your Julia set appears mirrored. I took a reference from a program that was awarded 125 points, however, it was actually incorrect. After one hour of troubleshooting, I realized that the screen image displays in a different way in our coordinate axis(which we will use to do calculations). My drawing below explains better:
+
 ![10](https://github.com/Xiru-Wang/fractol/assets/79924696/e34c0660-3c68-49c2-bb78-45b9554e4b71)
 
-# How image displayed on the screen
+Aha! Yes, so simple but takes time to realize the problem.  
+In the next step, we scale down the image and move it to the middle of our coordinate axis.
+![11](https://github.com/Xiru-Wang/fractol/assets/79924696/276d83fd-98ad-4272-878f-deea51f1ebd8)
+
 ````
 pos = (y * fractal->img.size_line) + ((fractal->img.bpp / 8) * x); 
 ````
 It tells you how to find the pixel data corresponding to that coordinate in memory.
 size_line: how many bytes each line, so y will move down so many lines.
 bpp/8: to get how many bytes per pixel, eg. 1 pixel requires 3 bytes, then x moves to right x*3 bytes
+
 <img width="1136" alt="Screenshot 2023-09-04 at 20 17 28" src="https://github.com/Xiru-Wang/fractol/assets/79924696/1ba8ab0d-ab36-46a3-a0c9-f80c12f03d48">
-screenshot from https://www.youtube.com/watch?v=ANLW1zYbLcs&t=6502s
-He has an excellent explanation(THANK YOU), check it out!
+
+Screenshot: https://www.youtube.com/watch?v=ANLW1zYbLcs&t=6502s.
+He has an excellent explanation of this project(THANK YOU SO MUCH), check it out!
 
 
 # Endianess/Byte Order
