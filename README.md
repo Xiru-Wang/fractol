@@ -51,7 +51,7 @@ Next, we'll resize the image and center it on our coordinate axis. With this adj
 
 ````
 However, we can do a simple calculation: 
-1. scale down the image into a 4*4 plane (x:-2~2, y: 2~-2)
+1. scale down the image into a 4*4 plane (x: -2 to 2, y: 2 to -2)
 2. add the offset values to move the scaled image to the middle of the plane.
    
 ````
