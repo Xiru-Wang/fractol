@@ -4,6 +4,17 @@ We will learn about manipulating a low-level graphic library: MinilibX, advanced
 
 Both the Mandelbrot and Julia sets are visual representations of complex mathematical formulas, and they produce stunningly intricate patterns and designs.
 
+# Mandelbrot VS Julia
+Use the same mathematical formula
+
+![12](https://github.com/Xiru-Wang/fractol/assets/79924696/2ed31bf8-61ae-4ca4-a398-41073abc6605)
+
+# What is a complex number?
+![13](https://github.com/Xiru-Wang/fractol/assets/79924696/340fba85-27cb-4891-8d57-3463c9ffe9f1)
+
+# Calculation Process
+![14](https://github.com/Xiru-Wang/fractol/assets/79924696/997f3a7d-556c-4ddf-a12f-e99a0f9d6b27)
+
 **Mandelbrot Set:**
 - Z= Z*Z + C, Z(0) = 0, C = each point on the plane
 - applying the mathematical formula repeatedly to each point(C) on the plane. 
@@ -25,36 +36,6 @@ cc *.c -Lminilibx-linux -lmlx_Linux -lX11 -lXext -o fractol
 -L: path to the library 
 
 -l: link
-
-#Images, RGB, Pixels
-https://www.youtube.com/watch?v=15aqFQQVBWU
-
-````
-//STEP 1: Establish the connection with X window server
-void *mlx = mlx_init(); // function includes malloc
-//if failed mlx_destroy_display(mlx);// free the resources
-
-//STEP 2: Create a window
-void *window = mlx_destroy_window(mlx, WIDTH, HEIGHT, "name of the window");
-
-//STEP 3: Events...
-mlx_mouse_hook(window, function, data);
-mlx_key_hook(window, function, data);
-mlx_hook(window, 17, 0, exit_function, data);//17: exit, close window
-
-//STEP 4: keeps the function alive
-mlx_loop(mlx);
-//Without this loop, the process will stop immediately
-//Keeps the program/application running
-//As long as the program is running, this loop continues to execute
-
-//LAST SETP:clean up
-mlx_destroy_window(mlx, window);
-mlx_destroy_display(mlx);
-free(connection);
-//exit in a clean way, close the connection to the X server
-
-````
 
 #Rescale the image to fit the coordinate axis
 ````
@@ -88,18 +69,45 @@ size_line: how many bytes each line, so y will move down so many lines.
 bpp/8: to get how many bytes per pixel, eg. 1 pixel requires 3 bytes, then x moves to right x*3 bytes
 <img width="1136" alt="Screenshot 2023-09-04 at 20 17 28" src="https://github.com/Xiru-Wang/fractol/assets/79924696/1ba8ab0d-ab36-46a3-a0c9-f80c12f03d48">
 screenshot from https://www.youtube.com/watch?v=ANLW1zYbLcs&t=6502s
-He has an excellent explanation, check it out!
+He has an excellent explanation(THANK YOU), check it out!
 
 
-# Endianess/Byte Order:
+# Endianess/Byte Order
+The number 0x12345678 
+-Big Endian: 12 34 56 78 
+-Little Endian:78 56 34 12
+
 https://www.youtube.com/watch?v=LxvFb63OOs8
 https://www.youtube.com/watch?v=CounrFEsOeA
 Endianess refers to the ordering of bytes in multi-byte data types (like int, float, etc.) as they are stored in memory.
 In Big Endian, the most significant byte is stored at the lowest memory address, and the least significant byte at the highest memory address.
 In Little Endian, the least significant byte is stored at the lowest memory address, and the most significant byte at the highest.
-For example, the number 0x12345678 would be stored as 12 34 56 78 in Big Endian and 78 56 34 12 in Little Endian.
 
+#Use MinilibX
+````
+//STEP 1: Establish the connection with X window server
+void *mlx = mlx_init();
+
+//STEP 2: Create a window
+void *window = mlx_destroy_window(mlx, WIDTH, HEIGHT, "fractol");
+
+//STEP 3: Events
+mlx_mouse_hook(window, function, data);
+mlx_key_hook(window, function, data);
+mlx_hook(window, 17, 0, exit_function, data);//17: exit, close window
+
+//STEP 4: keeps the program alive & listening events
+mlx_loop(mlx);
+//As long as the program is running, this loop continues to execute
+
+//CLEAN UP
+mlx_destroy_window(mlx, window);
+mlx_destroy_display(mlx);
+free(connection);
+
+````
 # Understand mlx_get_data_addr(): Get mem address to write pixels
+
 ````
 #include <mlx.h>
 
@@ -131,3 +139,7 @@ You're telling mlx_get_data_addr(): "Please provide me with the data parameters 
 
 ````
 
+#Resources: Images, RGB, Pixels
+https://www.youtube.com/watch?v=15aqFQQVBWU
+#Resouces: Events_key
+https://github.com/ilkou/minilibx/blob/master/key_linux.h
