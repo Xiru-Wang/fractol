@@ -22,8 +22,7 @@ That's how we get our x-axis(real part), and y-axis(imaginary part).
 - After i iteration, if Z escaped or stayed bounded
 - if z.x * z.x + z.y * z.y > 4, escaped
 
-**Julia Set:**
-Difference:
+**Julia Set (Difference):**
 - C = a fixed complex number, Z = each point on the plane
 - The shape and detail of the Julia set looks different, based on that fixed number(C)
 
