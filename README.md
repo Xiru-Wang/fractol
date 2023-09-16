@@ -1,11 +1,10 @@
 # Fract-ol
 Fascinating Fractals!! 
 
-<img width="500" alt="zoom in mandelbrot set" src="https://github.com/Xiru-Wang/fractol/assets/79924696/82003328-f4e5-4241-a8a6-bd624d86b548">
+<img width="550" alt="zoom in mandelbrot set" src="https://github.com/Xiru-Wang/fractol/assets/79924696/82003328-f4e5-4241-a8a6-bd624d86b548">
 zoom in mandelbrot set
 
-<img width="500" alt="julia set zoom follows mouse" src="https://github.com/Xiru-Wang/fractol/assets/79924696/4233ba04-78a1-4ecb-803a-8375082c2ca0">
-#![julia.gif](julia.gif)
+#![julia.gif](https://github.com/Xiru-Wang/fractol/blob/main/julia.gif)
 Julia set zoom follows mouse
 
 # Mandelbrot VS Julia
