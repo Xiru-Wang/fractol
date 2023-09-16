@@ -5,7 +5,7 @@ Fascinating Fractals!!
 
 zoom in mandelbrot set
 
-#![julia.gif](https://github.com/Xiru-Wang/fractol/blob/main/julia.gif)
+![julia.gif](https://github.com/Xiru-Wang/fractol/blob/main/julia.gif)
 
 Julia set zoom follows mouse
 
