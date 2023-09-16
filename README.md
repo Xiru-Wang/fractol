@@ -37,7 +37,7 @@ That's how we get our complex plane: x-axis(real part), and y-axis(imaginary par
 - C = a fixed complex number, Z = each point on the plane
 - The shape and detail of the Julia set looks different, based on that fixed number(C)
 
-#Original Burning Ship
+# Original Burning Ship
 - zx = x*x - y*y + cx, zy = 2 *|x*y| + cy
 The "normal" or "original" representation of the Burning Ship fractal, the "sails" of the "ship" indeed face downwards. However, in some presentations or software, for visual appeal or out of habit wanting to see the shape of a "ship", it is flipped to have the "sails" facing upwards.
 
