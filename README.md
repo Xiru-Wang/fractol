@@ -1,7 +1,7 @@
 # Fract-ol
 Fascinating Fractals!! 
 
-<img width="550" alt="zoom in mandelbrot set" src="https://github.com/Xiru-Wang/fractol/assets/79924696/82003328-f4e5-4241-a8a6-bd624d86b548">
+<img width="600" alt="zoom in mandelbrot set" src="https://github.com/Xiru-Wang/fractol/assets/79924696/82003328-f4e5-4241-a8a6-bd624d86b548">
 zoom in mandelbrot set
 
 #![julia.gif](https://github.com/Xiru-Wang/fractol/blob/main/julia.gif)
