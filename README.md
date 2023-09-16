@@ -3,6 +3,8 @@ Fascinating Fractals!!
 
 <img width="600" alt="zoom in mandelbrot set" src="https://github.com/Xiru-Wang/fractol/assets/79924696/82003328-f4e5-4241-a8a6-bd624d86b548">
 
+![Screenshot from 2023-09-12 20-32-09](https://github.com/Xiru-Wang/fractol/assets/79924696/44c9d014-ca4d-419d-81f6-b6dd1cfb343d)
+
 zoom in mandelbrot set
 
 ![julia.gif](https://github.com/Xiru-Wang/fractol/blob/main/julia.gif)
