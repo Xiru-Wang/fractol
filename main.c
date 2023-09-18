@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:05:03 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/13 20:01:42 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:52:25 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 
 	if ((2 == ac && !ft_strncmp(av[1], "mandel", 7))
 		|| (4 == ac && !ft_strncmp(av[1], "julia", 6))
-		|| (2 == ac && !ft_strncmp(av[1], "newton", 7)))
+		|| (2 == ac && !ft_strncmp(av[1], "ship", 5)))
 	{
 		fractal.name = av[1];
 		init_mlx(&fractal, av);
@@ -38,6 +38,7 @@ int	main(int ac, char **av)
 	else
 	{
 		write(STDERR_FILENO, "Please Enter:\n./fractol mandel\n", 31);
+		write(STDERR_FILENO, "./fractol ship\n", 15);
 		write(STDERR_FILENO, "./fractol julia [-2 < x < 2] [-2 < y < 2]\n", 42);
 		exit(EXIT_FAILURE);
 	}

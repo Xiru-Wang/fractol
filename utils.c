@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:43:52 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/13 20:12:41 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/16 22:24:00 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	call_fractal(t_fractal *fractal, char *name)
 		draw_mandel(fractal);
 	else if (ft_strncmp(name, "julia", 6) == 0)
 		draw_julia(fractal);
-	else if (ft_strncmp(name, "newton", 7) == 0)
-		draw_newton(fractal);
+	else if (ft_strncmp(name, "ship", 5) == 0)
+		draw_ship(fractal);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -82,15 +82,3 @@ double	atoi_db(char *s)
 	}
 	return (sign * (int_part + double_part));
 }
-
-// void	ft_putstr_fd(char *s, int fd)
-// {
-// 	unsigned int	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		write(fd, &s[i], 1);
-// 		i++;
-// 	}
-// }

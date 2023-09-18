@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 15:30:07 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/13 18:58:22 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/18 12:13:38 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	calculate_julia(int x, int y, t_fractal *fractal)
 		z.x = temp_x;
 		if ((z.x * z.x + z.y * z.y) > ESCAPE)
 		{
-			put_color_to_pix(x, y, fractal, fractal->color * (i % 42));
+			put_color_to_pix(x, y, fractal, fractal->color * (i % 256));
 			return ;
 		}
 	}

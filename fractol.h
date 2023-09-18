@@ -6,7 +6,7 @@
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/30 18:35:34 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/13 20:02:20 by xiwang           ###   ########.fr       */
+/*   Updated: 2023/09/16 21:30:40 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 
 # define SIZE 800
 # define RATIO 200.0//800/4
@@ -28,7 +29,7 @@
 //GRE 00FF00
 //BLU 0000FF
 
-# define ESCAPE 4
+# define ESCAPE 4.0
 
 //https://github.com/ilkou/minilibx/blob/master/key_linux.h
 # define ESC 65307
@@ -80,6 +81,7 @@ double	atoi_db(char *s);
 void	call_fractal(t_fractal *fractal, char *name);
 void	draw_mandel(t_fractal *fractal);
 void	draw_julia(t_fractal *fractal);
+void	draw_ship(t_fractal *fractal);
 int		julia_track(int x, int y, t_fractal *fractal);
 int		key_hook(int key_code, t_fractal *fractal);
 int		mouse_hook(int keycode, int x, int y, t_fractal *fractal);

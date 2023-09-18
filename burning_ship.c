@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandel.c                                           :+:      :+:    :+:   */
+/*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: xiwang <xiwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/13 15:29:33 by xiwang            #+#    #+#             */
-/*   Updated: 2023/09/18 12:13:49 by xiwang           ###   ########.fr       */
+/*   Created: 2023/09/16 21:12:53 by xiwang            #+#    #+#             */
+/*   Updated: 2023/09/18 12:13:25 by xiwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	calculate_mandel(int x, int y, t_fractal *fractal);
+static void	calculate_ship(int x, int y, t_fractal *fractal);
 
-void	draw_mandel(t_fractal *fractal)
+void	draw_ship(t_fractal *fractal)
 {
 	int	x;
 	int	y;
@@ -24,15 +24,16 @@ void	draw_mandel(t_fractal *fractal)
 	{
 		x = -1;
 		while (++x < SIZE)
-			calculate_mandel(x, y, fractal);
+			calculate_ship(x, y, fractal);
 	}
 	mlx_put_image_to_window(fractal->mlx,
 		fractal->window,
 		fractal->image, 0, 0);
 }
 
-// z(0) = 0; C = pixel point
-static void	calculate_mandel(int x, int y, t_fractal *fractal)
+// z = z^z + c
+
+static void	calculate_ship(int x, int y, t_fractal *fractal)
 {
 	t_complex	z;
 	t_complex	c;
@@ -47,8 +48,8 @@ static void	calculate_mandel(int x, int y, t_fractal *fractal)
 	while (i++ < fractal->max_iter)
 	{
 		temp_x = z.x * z.x - z.y * z.y + c.x;
-		z.y = 2 * z.x * z.y + c.y;
-		z.x = temp_x;
+		z.y = fabs(2 * z.x * z.y) + c.y;
+		z.x = fabs(temp_x);
 		if (z.x * z.x + z.y * z.y > ESCAPE)
 		{
 			put_color_to_pix(x, y, fractal, fractal->color * (i % 256));
@@ -58,7 +59,7 @@ static void	calculate_mandel(int x, int y, t_fractal *fractal)
 	put_color_to_pix(x, y, fractal, BLACK);
 }
 
-// static void calculate_mandel(int x, int y, t_fractal *fractal)
+// static void calculate_ship(int x, int y, t_fractal *fractal)
 // {
 // 	t_complex	z;
 // 	t_complex	c;
@@ -73,15 +74,14 @@ static void	calculate_mandel(int x, int y, t_fractal *fractal)
 // 	while (i++ < fractal->max_iter)
 // 	{
 // 		temp_x = z.x * z.x - z.y * z.y + c.x;
-// 		z.y = 2 * z.x * z.y + c.y;
-// 		z.x = temp_x;
+// 		z.y = fabs(2 * z.x * z.y) + c.y;
+// 		z.x = fabs(temp_x);
 // 		if (z.x * z.x + z.y * z.y > ESCAPE)
 // 		{
 // 			// Gradient Coloring
-// 			int blue = 255 - (i * 3 % 256);  // Reducing blue as i increases
-// 			int green = (i * 3) % 256;       // Increasing green as i increases
-// 			int red = green;              
-
+// 			int red = (i * 5) % 256;
+// 			int green = (255 - i * 2) % 256;
+// 			int blue = (i * 7) % 256;
 // 			int color = (red << 16) | (green << 8) | blue;
 // 			put_color_to_pix(x, y, fractal, color);
 // 			return ;
